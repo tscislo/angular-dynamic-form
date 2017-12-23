@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormControlConfig} from '../formControlConfig.interface';
+import { Component, OnInit } from '@angular/core';
+import {AbstractControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {FormControlConfig} from "../../formControlConfig.interface";
 
 @Component({
-  selector: 'text-field',
-  templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss']
+  selector: 'app-checkbox',
+  templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss']
 })
-export class TextFieldComponent implements OnInit {
+export class CheckboxComponent implements OnInit {
 
   public group: FormGroup;
   public controlConfig: FormControlConfig;

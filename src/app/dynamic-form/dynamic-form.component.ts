@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import {FormControlConfig} from './formControlConfig.interface';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {TextFieldComponent} from './form-controls/text-field.component';
+import {TextFieldComponent} from './form-controls/text-field/text-field.component';
+import {CheckboxComponent} from "./form-controls/checkbox/checkbox.component";
 
 @Component({
   selector: 'dynamic-form',
@@ -27,7 +28,7 @@ export class DynamicFormComponent implements OnInit {
 
   @Input()
   set controls(formControlConfig: FormControlConfig) {
-    this.build(formControlConfig)
+    this.build(formControlConfig);
   }
 
   @Output() onSent = new EventEmitter();
@@ -45,15 +46,16 @@ export class DynamicFormComponent implements OnInit {
 
   build(controls) {
     this.dynamicForm = new FormGroup({});
-    const controlFactory = this.cfr.resolveComponentFactory(TextFieldComponent);
 
     controls.forEach(config => {
+      const component: any = (config.type === 'text' || config.type === 'password') ? TextFieldComponent : CheckboxComponent;
+      const controlFactory = this.cfr.resolveComponentFactory(component);
       this.dynamicForm.addControl(config.name, new FormControl());
-      const controlRef = this.entry.createComponent(controlFactory);
+      const controlRef: any = this.entry.createComponent(controlFactory);
 
       controlRef.instance.group = this.dynamicForm;
       controlRef.instance.controlConfig = config;
-    })
+    });
   }
 
 }

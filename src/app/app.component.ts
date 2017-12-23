@@ -30,12 +30,17 @@ export class AppComponent {
       type: 'text',
       label: 'Kraj',
       name: 'country'
+    },
+    {
+      type: 'checkbox',
+      label: 'Do you accept terms?',
+      name: 'terms'
     }
   ]
 
 
   public onSent(formGroup) {
     console.log(formGroup);
-    console.log("Values", formGroup.value)
+    console.log("Values", formGroup.value);
   }
 }
