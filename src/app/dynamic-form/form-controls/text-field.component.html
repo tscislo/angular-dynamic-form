@@ -1,0 +1,11 @@
+<div
+  [formGroup]="group"
+  class="text-field"
+>
+  <label>{{ controlConfig.label }}
+  <span *ngIf="controlConfig.isRequired">*</span>
+  </label>
+  <input [type]="controlConfig.type"
+         [ngClass]="{'m-invalid' : isInValid()}"
+         [formControlName]="controlConfig.name">
+</div>

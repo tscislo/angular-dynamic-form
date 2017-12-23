@@ -1,8 +1,4 @@
 <dynamic-form
-  [controls]="[
-                {type: 'text', label: 'Imie', name: 'imie'},
-                {type: 'text', label: 'Nazwisko', name: 'nazwisko'},
-                {type: 'password', label: 'Hasło', name: 'haslo'}
-                ]"
+  [controls]="formControlsConfigs"
   (onSent)="onSent($event)"
 ></dynamic-form>

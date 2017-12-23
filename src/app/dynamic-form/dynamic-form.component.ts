@@ -1,15 +1,24 @@
-import {Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, Output, EventEmitter} from '@angular/core';
-import {ControlConfig} from './control';
-import {FormGroup, FormControl} from '@angular/forms';
-import {TextFieldComponent} from './controls/text-field.component';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ViewContainerRef,
+  ComponentFactoryResolver,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import {FormControlConfig} from './formControlConfig.interface';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {TextFieldComponent} from './form-controls/text-field.component';
 
 @Component({
   selector: 'dynamic-form',
   template: `
-    <form [formGroup]="dynamicForm" 
+    <form [formGroup]="dynamicForm"
           (ngSubmit)="onSent.emit(dynamicForm)">
       <ng-container #entry></ng-container>
-      <button>Submit</button>
+      <button [disabled]="!dynamicForm.valid">Submit!</button>
     </form>
   `,
   styles: []
@@ -17,8 +26,8 @@ import {TextFieldComponent} from './controls/text-field.component';
 export class DynamicFormComponent implements OnInit {
 
   @Input()
-  set controls(controlConfig) {
-    this.build(controlConfig)
+  set controls(formControlConfig: FormControlConfig) {
+    this.build(formControlConfig)
   }
 
   @Output() onSent = new EventEmitter();
@@ -28,20 +37,22 @@ export class DynamicFormComponent implements OnInit {
 
   public dynamicForm: FormGroup;
 
-  constructor(private cfr: ComponentFactoryResolver) { }
+  constructor(private cfr: ComponentFactoryResolver) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   build(controls) {
     this.dynamicForm = new FormGroup({});
     const controlFactory = this.cfr.resolveComponentFactory(TextFieldComponent);
 
-    controls.forEach( config => {
+    controls.forEach(config => {
       this.dynamicForm.addControl(config.name, new FormControl());
       const controlRef = this.entry.createComponent(controlFactory);
 
       controlRef.instance.group = this.dynamicForm;
-      controlRef.instance.control = config;
+      controlRef.instance.controlConfig = config;
     })
   }
 
