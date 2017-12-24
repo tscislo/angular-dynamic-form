@@ -12,7 +12,7 @@ import {FormControlConfig} from './formControlConfig.interface';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TextFieldComponent} from './form-controls/text-field/text-field.component';
 import {RadioComponent} from './form-controls/radio/radio.component';
-import {FormTypesService} from "./form-types.service";
+import {FormTypesService} from './form-types.service';
 
 @Component({
   selector: 'cpp-dynamic-form',

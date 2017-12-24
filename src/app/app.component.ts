@@ -83,7 +83,8 @@ export class AppComponent {
         }
       ],
       label: 'Do you accept terms?',
-      name: 'terms'
+      name: 'terms',
+      isRequired: true
     }
   ];
 
