@@ -1,12 +1,13 @@
 export interface FormControlConfig {
   type: {
     main: string;
-    sub: string;
+    sub?: string;
   };
-  label?: string;
+  label: string;
+  value?: string;
   name: string;
   isRequired?: boolean; // TODO: Maybe change that to list of validators?
-  options: {
+  options?: {
     name: string;
     label: string;
   }[];

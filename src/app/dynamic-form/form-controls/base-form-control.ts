@@ -13,6 +13,9 @@ export class BaseFormControl implements OnInit {
     if (this.controlConfig.isRequired) {
       this.control.setValidators([Validators.required]);
     }
+    if (this.controlConfig.value) {
+      setTimeout(() => this.control.setValue(this.controlConfig.value));
+    }
   }
 
   public isInValid = () => !this.control.valid && this.control.touched;

@@ -15,6 +15,7 @@ export class AppComponent {
       },
       label: 'Imie',
       name: 'name',
+      value: 'Tomek',
       isRequired: true
     },
     {
@@ -47,6 +48,7 @@ export class AppComponent {
       type: {
         main: 'RADIO'
       },
+      value: '10',
       options: [
         {
           name: '7',
