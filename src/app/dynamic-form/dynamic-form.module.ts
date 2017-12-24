@@ -3,7 +3,8 @@ import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DynamicFormComponent} from './dynamic-form.component';
 import {TextFieldComponent} from './form-controls/text-field/text-field.component';
-import {CheckboxComponent} from './form-controls/checkbox/checkbox.component';
+import {RadioComponent} from './form-controls/radio/radio.component';
+import {FormTypesService} from "./form-types.service";
 
 @NgModule({
   imports: [
@@ -12,12 +13,15 @@ import {CheckboxComponent} from './form-controls/checkbox/checkbox.component';
   ],
   entryComponents: [
     TextFieldComponent,
-    CheckboxComponent
+    RadioComponent
   ],
   declarations: [
     DynamicFormComponent,
     TextFieldComponent,
-    CheckboxComponent
+    RadioComponent
+  ],
+  providers: [
+    FormTypesService
   ],
   exports: [DynamicFormComponent, ReactiveFormsModule]
 })

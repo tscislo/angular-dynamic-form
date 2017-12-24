@@ -2,5 +2,6 @@ export interface FormControlConfig {
   type: string;
   label?: string;
   name: string;
-  isRequired?: boolean
+  isRequired?: boolean;
+  options: any[];
 }

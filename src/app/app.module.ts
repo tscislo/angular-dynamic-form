@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {DynamicFormModule} from "./dynamic-form/dynamic-form.module";
+import {DynamicFormModule} from './dynamic-form/dynamic-form.module';
 
 
 @NgModule({

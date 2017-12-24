@@ -3,7 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {FormControlConfig} from '../../formControlConfig.interface';
 
 @Component({
-  selector: 'text-field',
+  selector: 'cpp-text-field',
   templateUrl: './text-field.component.html',
   styleUrls: ['./text-field.component.scss']
 })

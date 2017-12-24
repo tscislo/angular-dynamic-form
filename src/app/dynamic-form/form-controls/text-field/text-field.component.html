@@ -5,7 +5,7 @@
   <label>{{ controlConfig.label }}
   <span *ngIf="controlConfig.isRequired">*</span>
   </label>
-  <input [type]="controlConfig.type"
+  <input [type]="controlConfig.type.sub"
          [ngClass]="{'m-invalid' : isInValid()}"
          [formControlName]="controlConfig.name">
 </div>

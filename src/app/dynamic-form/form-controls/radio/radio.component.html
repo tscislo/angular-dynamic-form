@@ -1,0 +1,14 @@
+<div
+  [formGroup]="group"
+  class="radio"
+>
+  <label>{{ controlConfig.label }}
+    <span *ngIf="controlConfig.isRequired">*</span>
+  </label>
+  <ng-container *ngFor="let option of controlConfig.options">
+    <input type="radio"
+           id="radio-{{option.name}}"
+           [formControlName]="controlConfig.name"
+           value="{{option.name}}"><label class="radio-label" for="radio-{{option.name}}">{{ option.label }}</label>
+  </ng-container>
+</div>

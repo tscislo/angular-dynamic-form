@@ -11,44 +11,44 @@ import {
 import {FormControlConfig} from './formControlConfig.interface';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TextFieldComponent} from './form-controls/text-field/text-field.component';
-import {CheckboxComponent} from "./form-controls/checkbox/checkbox.component";
+import {RadioComponent} from './form-controls/radio/radio.component';
+import {FormTypesService} from "./form-types.service";
 
 @Component({
-  selector: 'dynamic-form',
+  selector: 'cpp-dynamic-form',
   template: `
     <form [formGroup]="dynamicForm"
-          (ngSubmit)="onSent.emit(dynamicForm)">
+          (ngSubmit)="sent.emit(dynamicForm)">
       <ng-container #entry></ng-container>
       <button [disabled]="!dynamicForm.valid">Submit!</button>
     </form>
   `,
   styles: []
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent {
 
   @Input()
   set controls(formControlConfig: FormControlConfig) {
     this.build(formControlConfig);
   }
 
-  @Output() onSent = new EventEmitter();
+  @Output() sent = new EventEmitter();
 
   @ViewChild('entry', {read: ViewContainerRef})
   private entry: ViewContainerRef;
 
   public dynamicForm: FormGroup;
 
-  constructor(private cfr: ComponentFactoryResolver) {
+  constructor(private cfr: ComponentFactoryResolver,
+              private formTypesService: FormTypesService) {
   }
 
-  ngOnInit() {
-  }
 
   build(controls) {
     this.dynamicForm = new FormGroup({});
 
     controls.forEach(config => {
-      const component: any = (config.type === 'text' || config.type === 'password') ? TextFieldComponent : CheckboxComponent;
+      const component: any = this.formTypesService.get(config.type.main);
       const controlFactory = this.cfr.resolveComponentFactory(component);
       this.dynamicForm.addControl(config.name, new FormControl());
       const controlRef: any = this.entry.createComponent(controlFactory);
