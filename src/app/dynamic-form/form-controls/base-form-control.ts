@@ -11,7 +11,7 @@ export class BaseFormControl implements OnInit {
   ngOnInit() {
     this.control = this.group.controls[this.controlConfig.name];
     if (this.controlConfig.isRequired) {
-      this.control.setValidators([Validators.required]);
+      setTimeout(() => this.control.setValidators([Validators.required]));
     }
     if (this.controlConfig.value) {
       setTimeout(() => this.control.setValue(this.controlConfig.value));

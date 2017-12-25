@@ -7,88 +7,93 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
 
-  public formControlsConfigs = [
+  public formControlConfigs =
     {
-      type: {
-        main: 'TEXT',
-        sub: 'text'
-      },
-      label: 'Imie',
-      name: 'name',
-      value: 'Tomek',
-      isRequired: true
-    },
-    {
-      type: {
-        main: 'TEXT',
-        sub: 'text'
-      },
-      label: 'Nazwisko',
-      name: 'surname',
-      isRequired: true
-    },
-    {
-      type: {
-        main: 'TEXT',
-        sub: 'password'
-      },
-      label: 'Hasło',
-      name: 'password',
-      isRequired: true
-    },
-    {
-      type: {
-        main: 'TEXT',
-        sub: 'text'
-      },
-      label: 'Kraj',
-      name: 'country'
-    },
-    {
-      type: {
-        main: 'RADIO'
-      },
-      value: '10',
-      options: [
+      'extendedData': [
         {
-          name: '7',
-          label: '7mln'
+          type: {
+            main: 'TEXT',
+            sub: 'text'
+          },
+          label: 'Kraj',
+          name: 'country'
         },
         {
-          name: '10',
-          label: '10mln'
-        },
-        {
-          name: '15',
-          label: '15mln'
+          type: {
+            main: 'RADIO'
+          },
+          value: '10',
+          options: [
+            {
+              name: '7',
+              label: '7mln'
+            },
+            {
+              name: '10',
+              label: '10mln'
+            },
+            {
+              name: '15',
+              label: '15mln'
+            }
+          ],
+          label: 'Population?',
+          name: 'population'
         }
       ],
-      label: 'Population?',
-      name: 'population'
-    },
-    {
-      type: {
-        main: 'RADIO'
-      },
-      options: [
+      'userData': [
         {
-          name: 'yes',
-          label: 'Yes'
+          type: {
+            main: 'TEXT',
+            sub: 'text'
+          },
+          label: 'Imie',
+          name: 'name',
+          value: 'Tomek',
+          isRequired: true
         },
         {
-          name: 'no',
-          label: 'No'
+          type: {
+            main: 'TEXT',
+            sub: 'text'
+          },
+          label: 'Nazwisko',
+          name: 'surname',
+          isRequired: true
         },
         {
-          name: 'maybe',
-          label: 'Maybe'
+          type: {
+            main: 'TEXT',
+            sub: 'password'
+          },
+          label: 'Hasło',
+          name: 'password',
+          isRequired: true
+        },
+        {
+          type: {
+            main: 'RADIO'
+          },
+          options: [
+            {
+              name: 'yes',
+              label: 'Yes'
+            },
+            {
+              name: 'no',
+              label: 'No'
+            },
+            {
+              name: 'maybe',
+              label: 'Maybe'
+            }
+          ],
+          label: 'Do you accept terms?',
+          name: 'terms',
+          isRequired: true
         }
-      ],
-      label: 'Do you accept terms?',
-      name: 'terms',
-      isRequired: true
-    }
-  ];
+      ]
+    };
 
 
   public onSent(formGroup) {
