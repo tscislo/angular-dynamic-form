@@ -1,8 +1,9 @@
 <!--<cpp-dynamic-form-group-->
-  <!--[controls]="formControlsConfigs"-->
-  <!--(sent)="onSent($event)"-->
+<!--[controls]="formControlsConfigs"-->
+<!--(sent)="onSent($event)"-->
 <!--&gt;</cpp-dynamic-form-group>-->
 <cpp-dynamic-form
-  [controls]="formControlConfigs">
+        (sent)="onSent($event)"
+        [controls]="formControlConfigs">
 </cpp-dynamic-form>
 

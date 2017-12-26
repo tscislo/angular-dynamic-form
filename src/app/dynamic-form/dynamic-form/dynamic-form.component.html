@@ -1,4 +1,5 @@
 <form [formGroup]="dynamicFormGroup"
      (ngSubmit)="sent.emit(dynamicFormGroup)">
   <ng-container #entry></ng-container>
+  <button [disabled]="!dynamicFormGroup.valid">Submit!</button>
 </form>
