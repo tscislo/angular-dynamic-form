@@ -27,7 +27,6 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     FormTypesService
   ],
   exports: [
-    DynamicFormGroupComponent,
     ReactiveFormsModule,
     DynamicFormComponent
   ]

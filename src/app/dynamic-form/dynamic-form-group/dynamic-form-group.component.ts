@@ -22,7 +22,6 @@ export class DynamicFormGroupComponent {
         this.build(formControlConfig);
     }
 
-    @Output() sent = new EventEmitter();
 
     @ViewChild('entry', {read: ViewContainerRef})
     private entry: ViewContainerRef;
