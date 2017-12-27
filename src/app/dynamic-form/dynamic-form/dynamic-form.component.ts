@@ -1,7 +1,14 @@
-import {Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {FormControlConfig} from '../formControlConfig.interface';
-import {FormTypesService} from '../form-types.service';
 import {DynamicFormGroupComponent} from '../dynamic-form-group/dynamic-form-group.component';
 import {FormControlConfigs} from '../formControlConfigs.interface';
 
