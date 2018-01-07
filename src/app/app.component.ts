@@ -17,7 +17,8 @@ export class AppComponent {
                     },
                     label: 'Kraj',
                     name: 'country',
-                    isRequired: true
+                    isRequired: true,
+                    asyncValidator: true
                 },
                 {
                     type: {

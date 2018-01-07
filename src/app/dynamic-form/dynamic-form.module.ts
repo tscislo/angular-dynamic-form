@@ -6,11 +6,13 @@ import {TextFieldComponent} from './form-controls/text-field/text-field.componen
 import {RadioComponent} from './form-controls/radio/radio.component';
 import {FormTypesService} from './form-types.service';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+      HttpClientModule
   ],
   entryComponents: [
     TextFieldComponent,

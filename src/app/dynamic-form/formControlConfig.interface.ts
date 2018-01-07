@@ -7,6 +7,7 @@ export interface FormControlConfig {
   value?: string;
   name: string;
   isRequired?: boolean; // TODO: Maybe change that to list of validators?
+  asyncValidator?: boolean;
   options?: {
     name: string;
     label: string;
