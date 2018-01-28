@@ -7,5 +7,6 @@
   </label>
   <input [type]="controlConfig.type.sub"
          [ngClass]="{'m-invalid' : isInValid()}"
+         (keyup)="keyUp.emit($event)"
          [formControlName]="controlConfig.name">
 </div>

@@ -59,6 +59,32 @@ export class AppComponent {
                 },
                 {
                     type: {
+                        main: 'COMPOSITE'
+                    },
+                    name: 'nameSurname',
+                    label: 'Imie i nazwisko (composite control)',
+                    isRequired: true,
+                    controls: [
+                        {
+                            type: {
+                                main: 'TEXT',
+                                sub: 'text'
+                            },
+                            label: 'Imie',
+                            name: 'name',
+                        },
+                        {
+                            type: {
+                                main: 'TEXT',
+                                sub: 'text'
+                            },
+                            label: 'Nazwisko',
+                            name: 'surname'
+                        },
+                    ]
+                },
+                {
+                    type: {
                         main: 'RADIO'
                     },
                     value: '10',
@@ -81,22 +107,6 @@ export class AppComponent {
                 }
             ],
             'userData': [
-                {
-                    type: {
-                        main: 'TEXT',
-                        sub: 'text'
-                    },
-                    label: 'Imie',
-                    name: 'name',
-                },
-                {
-                    type: {
-                        main: 'TEXT',
-                        sub: 'text'
-                    },
-                    label: 'Nazwisko',
-                    name: 'surname'
-                },
                 {
                     type: {
                         main: 'TEXT',

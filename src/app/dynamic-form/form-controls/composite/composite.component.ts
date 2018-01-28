@@ -1,5 +1,5 @@
 import {Component, ComponentFactoryResolver, forwardRef, Inject, ViewChild, ViewContainerRef} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormControlConfig} from '../../formControlConfig.interface';
 import {FormTypesService} from '../../form-types.service';
 
@@ -15,6 +15,8 @@ export class CompositeComponent {
     }
 
     public group: FormGroup;
+    public shadowGroup: FormGroup = new FormGroup({});
+    public control: AbstractControl;
     public controlConfig: FormControlConfig;
 
     @ViewChild('entry', {read: ViewContainerRef})
@@ -24,10 +26,9 @@ export class CompositeComponent {
                 @Inject(forwardRef(() => FormTypesService)) private formTypesService: FormTypesService) {
     }
 
-    // TODO: Each child control should emit on changed value and composite
-    // should concat it as { name: xxx, label: ...}
-    build(controls) {
 
+    build(controls) {
+        this.control = this.group.controls[this.controlConfig.name];
         controls.forEach(config => {
             const control = new FormControl();
             const component: any = this.formTypesService.get(config.type.main);
@@ -39,15 +40,27 @@ export class CompositeComponent {
             if (config.value) {
                 control.setValue(config.value);
             }
-            this.group.addControl(config.name, control);
+            this.shadowGroup.addControl(config.name, control);
             const controlRef: any = this.entry.createComponent(controlFactory);
 
-            controlRef.instance.group = this.group;
+            controlRef.instance.group = this.shadowGroup;
             controlRef.instance.controlConfig = config;
+            controlRef.instance.keyUp.subscribe((value) => {
+                let controlValue = '';
+                Object.keys(this.shadowGroup.value).forEach((key) => {
+                    controlValue += this.shadowGroup.value[key];
+                });
+                this.control.setValue(controlValue);
+                if (this.shadowGroup.valid) {
+                    this.control.setErrors(null);
+                } else {
+                    this.control.setErrors({'incorrect': true});
+                }
+            });
         });
 
     }
 
-    public isInValid = () => !this.group.valid && this.group.touched;
+    public isInValid = () => !this.shadowGroup.valid && this.shadowGroup.touched;
 
 }
