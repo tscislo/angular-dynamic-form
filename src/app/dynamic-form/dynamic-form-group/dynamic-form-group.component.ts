@@ -10,6 +10,7 @@ import {
 import {FormControlConfig} from '../formControlConfig.interface';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FormTypesService} from '../form-types.service';
+import {FormTypesExtendedService} from '../form-types-extended.service';
 
 @Component({
   selector: 'cpp-dynamic-form-group',
@@ -30,21 +31,22 @@ export class DynamicFormGroupComponent {
   public dynamicFormGroup: FormGroup;
 
   constructor(private cfr: ComponentFactoryResolver,
-              private formTypesService: FormTypesService) {
+              private formTypesService: FormTypesExtendedService) {
   }
-
 
   build(controls) {
     this.dynamicFormGroup = new FormGroup({});
-
     controls.forEach(config => {
+      const formGroupForComp = new FormGroup({});
       const component: any = this.formTypesService.get(config.type.main);
       const controlFactory = this.cfr.resolveComponentFactory(component);
-      this.dynamicFormGroup.addControl(config.name, new FormControl());
+      this.dynamicFormGroup.addControl(config.name, (config.type.main === 'COMPOSITE') ? formGroupForComp : new FormControl());
       const controlRef: any = this.entry.createComponent(controlFactory);
 
-      controlRef.instance.group = this.dynamicFormGroup;
+      controlRef.instance.group = (config.type.main === 'COMPOSITE') ? formGroupForComp : this.dynamicFormGroup;
       controlRef.instance.controlConfig = config;
+      controlRef.instance.controls = controlRef.instance.controlConfig.controls;
+
     });
   }
 

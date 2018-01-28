@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {DynamicFormComponent} from './dynamic-form/dynamic-form/dynamic-form.component';
 
 @Component({
   selector: 'cpp-root',
@@ -6,6 +7,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  @ViewChild(DynamicFormComponent) dynamicFormComponent: DynamicFormComponent;
 
   public formControlConfigs =
     {
@@ -17,6 +20,43 @@ export class AppComponent {
           },
           label: 'Kraj',
           name: 'country'
+        },
+        {
+          type: {
+            main: 'COMPOSITE'
+          },
+          name: 'birthData',
+          label: 'Data urodzenia',
+          isRequired: true,
+          controls: [
+            {
+              type: {
+                main: 'TEXT',
+                sub: 'number'
+              },
+              label: 'Dzień',
+              name: 'day',
+              isRequired: true
+            },
+            {
+              type: {
+                main: 'TEXT',
+                sub: 'number'
+              },
+              label: 'Miesiąc',
+              name: 'month',
+              isRequired: true
+            },
+            {
+              type: {
+                main: 'TEXT',
+                sub: 'number'
+              },
+              label: 'Rok',
+              name: 'year',
+              isRequired: true
+            },
+          ]
         },
         {
           type: {
@@ -96,8 +136,8 @@ export class AppComponent {
     };
 
 
-  public onSent(formGroup) {
-    console.log(formGroup);
-    console.log('Values', formGroup.value);
+  public submit() {
+    console.log('value', this.dynamicFormComponent.dynamicFormGroup.value);
+    console.log('valid', this.dynamicFormComponent.dynamicFormGroup.valid);
   }
 }

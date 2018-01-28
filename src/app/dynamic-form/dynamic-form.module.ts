@@ -6,6 +6,8 @@ import {TextFieldComponent} from './form-controls/text-field/text-field.componen
 import {RadioComponent} from './form-controls/radio/radio.component';
 import {FormTypesService} from './form-types.service';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import {CompositeComponent} from './form-controls/composite/composite.component';
+import {FormTypesExtendedService} from './form-types-extended.service';
 
 @NgModule({
   imports: [
@@ -15,16 +17,19 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
   entryComponents: [
     TextFieldComponent,
     RadioComponent,
-    DynamicFormGroupComponent
+    DynamicFormGroupComponent,
+    CompositeComponent
   ],
   declarations: [
     DynamicFormGroupComponent,
     TextFieldComponent,
     RadioComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    CompositeComponent
   ],
   providers: [
-    FormTypesService
+    FormTypesService,
+    FormTypesExtendedService
   ],
   exports: [
     DynamicFormGroupComponent,

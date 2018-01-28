@@ -3,6 +3,7 @@ export interface FormControlConfig {
     main: string;
     sub?: string;
   };
+  controls?: FormControlConfig[];
   label: string;
   value?: string;
   name: string;
