@@ -6,32 +6,36 @@ import {TextFieldComponent} from './form-controls/text-field/text-field.componen
 import {RadioComponent} from './form-controls/radio/radio.component';
 import {FormTypesService} from './form-types.service';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import {CompositeComponent} from './form-controls/composite/composite.component';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-      HttpClientModule
-  ],
-  entryComponents: [
-    TextFieldComponent,
-    RadioComponent,
-    DynamicFormGroupComponent
-  ],
-  declarations: [
-    DynamicFormGroupComponent,
-    TextFieldComponent,
-    RadioComponent,
-    DynamicFormComponent
-  ],
-  providers: [
-    FormTypesService
-  ],
-  exports: [
-    ReactiveFormsModule,
-    DynamicFormComponent
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        HttpClientModule
+    ],
+    entryComponents: [
+        TextFieldComponent,
+        RadioComponent,
+        DynamicFormGroupComponent,
+        CompositeComponent
+    ],
+    declarations: [
+        DynamicFormGroupComponent,
+        TextFieldComponent,
+        RadioComponent,
+        DynamicFormComponent,
+        CompositeComponent
+    ],
+    providers: [
+        FormTypesService
+    ],
+    exports: [
+        DynamicFormGroupComponent,
+        ReactiveFormsModule,
+        DynamicFormComponent
+    ]
 })
 export class DynamicFormModule {
 }

@@ -40,6 +40,7 @@ export class DynamicFormGroupComponent {
         this.dynamicFormGroup = new FormGroup({});
 
         controls.forEach((config: FormControlConfig) => {
+            const formGroup = new FormGroup({});
             const component: any = this.formTypesService.get(config.type.main);
             const controlFactory = this.cfr.resolveComponentFactory(component);
             const formControl = new FormControl();
@@ -53,11 +54,12 @@ export class DynamicFormGroupComponent {
             if (config.value) {
                 formControl.setValue(config.value);
             }
-            this.dynamicFormGroup.addControl(config.name, formControl);
+            this.dynamicFormGroup.addControl(config.name, (config.type.main === 'COMPOSITE') ? formGroup : formControl);
             const controlRef: any = this.entry.createComponent(controlFactory);
 
-            controlRef.instance.group = this.dynamicFormGroup;
+            controlRef.instance.group = (config.type.main === 'COMPOSITE') ? formGroup : this.dynamicFormGroup;
             controlRef.instance.controlConfig = config;
+            controlRef.instance.controls = controlRef.instance.controlConfig.controls;
         });
     }
 

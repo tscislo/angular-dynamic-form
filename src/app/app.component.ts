@@ -22,6 +22,43 @@ export class AppComponent {
                 },
                 {
                     type: {
+                        main: 'COMPOSITE'
+                    },
+                    name: 'birthDate',
+                    label: 'Data urodzenia (composite control)',
+                    isRequired: true,
+                    controls: [
+                        {
+                            type: {
+                                main: 'TEXT',
+                                sub: 'number'
+                            },
+                            label: 'Dzień',
+                            name: 'day',
+                            isRequired: true
+                        },
+                        {
+                            type: {
+                                main: 'TEXT',
+                                sub: 'number'
+                            },
+                            label: 'Miesiąc',
+                            name: 'month',
+                            isRequired: true
+                        },
+                        {
+                            type: {
+                                main: 'TEXT',
+                                sub: 'number'
+                            },
+                            label: 'Rok',
+                            name: 'year',
+                            isRequired: true
+                        },
+                    ]
+                },
+                {
+                    type: {
                         main: 'RADIO'
                     },
                     value: '10',

@@ -1,0 +1,8 @@
+<div [formGroup]="group" class="composite"
+     [ngClass]="{'m-invalid' : isInValid()}"
+>
+  <label>{{ controlConfig.label }}
+    <span *ngIf="controlConfig.isRequired">*</span>
+  </label>
+  <ng-container #entry></ng-container>
+</div>
