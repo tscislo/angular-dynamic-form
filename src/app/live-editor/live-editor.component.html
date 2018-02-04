@@ -1,12 +1,20 @@
 <div class="container-fluid">
+    <div class="row" *ngIf="errorMsg">
+        <div class="col-12 error">
+            {{ errorMsg }}
+        </div>
+    </div>
     <div class="row">
         <div class="col-6">
             <cpp-json-editor
+                    (error)="onError($event)"
+                    (onChanged)="onJsonChanged()"
                     [options]="editorOptions"
                     [(data)]="data"></cpp-json-editor>
         </div>
         <div class="col-6">
             <cpp-dynamic-form
+                    (error)="onError($event)"
                     (sent)="onSent($event)"
                     [controls]="data">
             </cpp-dynamic-form>

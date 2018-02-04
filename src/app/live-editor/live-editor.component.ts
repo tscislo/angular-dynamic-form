@@ -11,13 +11,14 @@ export class LiveEditorComponent {
 
     public editorOptions: JsonEditorOptions;
     public data: any;
+    public errorMsg: string;
     @ViewChild(JsonEditorComponent) editor: JsonEditorComponent;
 
     constructor() {
         this.editorOptions = new JsonEditorOptions();
         this.editorOptions.modes = ['code', 'text', 'tree', 'view']; // set all allowed modes
 
-        this.data =      {
+        this.data = {
             'extendedData': [
                 {
                     type: {
@@ -144,4 +145,13 @@ export class LiveEditorComponent {
         console.log(formGroup);
         console.log('Values', formGroup.value);
     }
+
+    public onError(error) {
+        this.errorMsg = error;
+    }
+
+    public onJsonChanged() {
+        this.errorMsg = null;
+    }
+
 }

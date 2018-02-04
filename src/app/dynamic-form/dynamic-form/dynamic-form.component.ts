@@ -25,6 +25,7 @@ export class DynamicFormComponent implements OnInit {
     }
 
     @Output() sent = new EventEmitter();
+    @Output() error = new EventEmitter();
 
     @ViewChild('entry', {read: ViewContainerRef})
     private entry: ViewContainerRef;
@@ -40,13 +41,17 @@ export class DynamicFormComponent implements OnInit {
     build(formControlConfigs: FormControlConfigs) {
         this.dynamicFormGroup = new FormGroup({});
         this.entry.clear();
-
-        Object.keys(formControlConfigs).forEach((formGroupName) => {
-            const controlFactory = this.cfr.resolveComponentFactory(DynamicFormGroupComponent);
-            const controlRef: any = this.entry.createComponent(controlFactory);
-            controlRef.instance.controls = formControlConfigs[formGroupName];
-            this.dynamicFormGroup.addControl(formGroupName, controlRef.instance.dynamicFormGroup);
-        });
+        try {
+            Object.keys(formControlConfigs).forEach((formGroupName) => {
+                const controlFactory = this.cfr.resolveComponentFactory(DynamicFormGroupComponent);
+                const controlRef: any = this.entry.createComponent(controlFactory);
+                controlRef.instance.controls = formControlConfigs[formGroupName];
+                this.dynamicFormGroup.addControl(formGroupName, controlRef.instance.dynamicFormGroup);
+            });
+        } catch (e) {
+            console.error(e);
+            this.error.emit(e.toLocaleString());
+        }
 
 
     }

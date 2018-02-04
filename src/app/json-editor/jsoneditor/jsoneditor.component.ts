@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, Input, ViewChild, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, Output, EventEmitter} from '@angular/core';
 import * as jsonEditor from 'jsoneditor';
 import {JsonEditorMode, JsonEditorOptions} from './jsoneditor';
 
@@ -9,19 +9,18 @@ import {JsonEditorMode, JsonEditorOptions} from './jsoneditor';
 
 export class JsonEditorComponent implements OnInit {
     private editor: any;
-    private optionsDiffer: any;
-    private dataDiffer: any;
 
     @Input() options = new JsonEditorOptions();
-
     @Input() data = {};
 
     @Output() dataChange = new EventEmitter();
+    @Output() onChanged = new EventEmitter();
+    @Output() error = new EventEmitter();
 
     @ViewChild('entry')
     public entry;
 
-    constructor(private rootElement: ElementRef) {
+    constructor() {
     }
 
     ngOnInit() {
@@ -30,8 +29,14 @@ export class JsonEditorComponent implements OnInit {
     }
 
     public onChange = () => {
-        this.data = this.editor.get();
-        this.dataChange.emit(this.data);
+        this.onChanged.emit();
+        try {
+            this.data = this.editor.get();
+            this.dataChange.emit(this.data);
+        } catch (e) {
+            console.error(e);
+            this.error.emit(e.toLocaleString());
+        }
     };
 
     public collapseAll() {
