@@ -39,6 +39,7 @@ export class DynamicFormComponent implements OnInit {
 
     build(formControlConfigs: FormControlConfigs) {
         this.dynamicFormGroup = new FormGroup({});
+        this.entry.clear();
 
         Object.keys(formControlConfigs).forEach((formGroupName) => {
             const controlFactory = this.cfr.resolveComponentFactory(DynamicFormGroupComponent);

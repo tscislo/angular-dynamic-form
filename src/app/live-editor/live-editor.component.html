@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <cpp-json-editor
+                    [options]="editorOptions"
+                    [(data)]="data"></cpp-json-editor>
+        </div>
+        <div class="col-6">
+            <cpp-dynamic-form
+                    (sent)="onSent($event)"
+                    [controls]="data">
+            </cpp-dynamic-form>
+        </div>
+    </div>
+</div>
