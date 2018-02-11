@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild, Output, EventEmitter} from '@angular/core';
 import * as jsonEditor from 'jsoneditor';
-import {JsonEditorMode, JsonEditorOptions} from './jsoneditor';
+import {JsonEditorMode, JsonEditorOptions} from './jsoneditor.utils';
 
 @Component({
     selector: 'cpp-json-editor',
